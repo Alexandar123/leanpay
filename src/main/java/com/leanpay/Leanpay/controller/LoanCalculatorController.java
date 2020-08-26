@@ -1,6 +1,5 @@
 package com.leanpay.Leanpay.controller;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.leanpay.Leanpay.dto.DetailedResponseDto;
 import com.leanpay.Leanpay.dto.LoanCalculatorRequestDto;
 import com.leanpay.Leanpay.dto.MonthlyAccountDTO;
-import com.leanpay.Leanpay.dto.MonthlyAccountDetailedDTO;
 import com.leanpay.Leanpay.dto.ResponseDTO;
 import com.leanpay.Leanpay.service.CalculateLoanPaymentService;
 import com.leanpay.Leanpay.service.LoanCalculatorService;

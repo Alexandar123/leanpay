@@ -15,40 +15,6 @@ public class CalculateLoanPaymentService {
 
 	/**
 	 * 
-	 * @param amount                 - loan withdrawal amount
-	 * @param numOfMonths            - number of months to raise a loan
-	 * @param monthlyInterestPercent - monthly interest
-	 * @return response - total amount, total interest and monthly installment
-	 *         amount
-	 */
-	/*public ResponseDTO calculateMonthlyInstallment(float amount, int numOfMonths, float monthlyInterestPercent) {
-
-		double i = monthlyInterestPercent / 100 / 12;
-		double iRounded = round(i, 6);
-
-		double above = amount * iRounded * Math.pow((1 + iRounded), numOfMonths);
-		double belowe = Math.pow((1 + iRounded), numOfMonths) - 1;
-		double installment = above / belowe;
-
-		double totalAmount = (above / belowe) * numOfMonths;
-		double interest = totalAmount - amount;
-
-		List<MonthlyAccountDTO> monthlyInstallments = new ArrayList<>();
-
-		for (int count = 0; count < numOfMonths; count++) {
-			monthlyInstallments.add(new MonthlyAccountDTO((count + 1), round(installment, 2)));
-		}
-
-		ResponseDTO response = new ResponseDTO();
-		response.setAmount(amount);
-		response.setTotalAmount(round(totalAmount, 2));
-		response.setInterestAmount(round(interest, 2));
-		response.setItems(monthlyInstallments);
-		return response;
-	}*/
-
-	/**
-	 * 
 	 * @param principal          - loan withdrawal amount
 	 * @param numOfMonths        - number of months to raise a loan
 	 * @param annualInterestRate - monthly interest
