@@ -23,33 +23,30 @@ public class LoanCalculatorResponse {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonIgnore
 	private Long id;
-	private float amount;
+	private double amount;
 	@Column(name = "total_amount")
 	private double totalAmount;
 	@Column(name = "interest_amount")
 	private double interestAmount;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "monthly_acc_fk", referencedColumnName = "id")
-	private List<MonthlyAccount> items;
+	@JoinColumn(name = "monthly_detailed_acc_fk", referencedColumnName = "id")
+	private List<MonthlyAccountDetailed> items;
 
-	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "lc_response")
 	private LoanCalculatorRequest loanCalculatorRequest;
 
 	public LoanCalculatorResponse() {
 	}
 
-	public LoanCalculatorResponse(Long id, float amount, double totalAmount, double interestAmount,
-			List<MonthlyAccount> items) {
+	public LoanCalculatorResponse(double amount, double totalAmount, double interestAmount,
+			List<MonthlyAccountDetailed> detailedItems) {
 		super();
-		this.id = id;
 		this.amount = amount;
 		this.totalAmount = totalAmount;
 		this.interestAmount = interestAmount;
-		this.items = items;
+		this.items = detailedItems;
 	}
 
 	public Long getId() {
@@ -60,11 +57,11 @@ public class LoanCalculatorResponse {
 		this.id = id;
 	}
 
-	public float getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(float amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
@@ -84,14 +81,6 @@ public class LoanCalculatorResponse {
 		this.interestAmount = interestAmount;
 	}
 
-	public List<MonthlyAccount> getItems() {
-		return items;
-	}
-
-	public void setItems(List<MonthlyAccount> items) {
-		this.items = items;
-	}
-
 	public LoanCalculatorRequest getLoanCalculatorRequest() {
 		return loanCalculatorRequest;
 	}
@@ -100,10 +89,19 @@ public class LoanCalculatorResponse {
 		this.loanCalculatorRequest = loanCalculatorRequest;
 	}
 
+	public List<MonthlyAccountDetailed> getDetailedItems() {
+		return items;
+	}
+
+	public void setDetailedItems(List<MonthlyAccountDetailed> detailedItems) {
+		this.items = detailedItems;
+	}
+
 	@Override
 	public String toString() {
 		return "LoanCalculatorResponse [id=" + id + ", amount=" + amount + ", totalAmount=" + totalAmount
-				+ ", interestAmount=" + interestAmount + ", items=" + 5 + "]";
+				+ ", interestAmount=" + interestAmount + ", items=" + items + ", detailedItems=" + items
+				+ ", loanCalculatorRequest=" + loanCalculatorRequest + "]";
 	}
 
 }

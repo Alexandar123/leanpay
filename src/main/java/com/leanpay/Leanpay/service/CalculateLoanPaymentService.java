@@ -7,14 +7,22 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.leanpay.Leanpay.entity.LoanCalculatorResponse;
-import com.leanpay.Leanpay.entity.MonthlyAccount;
+import com.leanpay.Leanpay.dto.DetailedResponseDto;
+import com.leanpay.Leanpay.dto.MonthlyAccountDetailedDTO;
 
 @Service
 public class CalculateLoanPaymentService {
 
-	public LoanCalculatorResponse calculateMonthlyInstallment(float amount, int numOfMonths,
-			float monthlyInterestPercent) {
+	/**
+	 * 
+	 * @param amount                 - loan withdrawal amount
+	 * @param numOfMonths            - number of months to raise a loan
+	 * @param monthlyInterestPercent - monthly interest
+	 * @return response - total amount, total interest and monthly installment
+	 *         amount
+	 */
+	/*public ResponseDTO calculateMonthlyInstallment(float amount, int numOfMonths, float monthlyInterestPercent) {
+
 		double i = monthlyInterestPercent / 100 / 12;
 		double iRounded = round(i, 6);
 
@@ -25,20 +33,90 @@ public class CalculateLoanPaymentService {
 		double totalAmount = (above / belowe) * numOfMonths;
 		double interest = totalAmount - amount;
 
-		List<MonthlyAccount> monthlyInstallments = new ArrayList<>();
+		List<MonthlyAccountDTO> monthlyInstallments = new ArrayList<>();
 
 		for (int count = 0; count < numOfMonths; count++) {
-			monthlyInstallments.add(new MonthlyAccount((count + 1), round(installment, 2)));
+			monthlyInstallments.add(new MonthlyAccountDTO((count + 1), round(installment, 2)));
 		}
 
-		LoanCalculatorResponse response = new LoanCalculatorResponse();
+		ResponseDTO response = new ResponseDTO();
 		response.setAmount(amount);
 		response.setTotalAmount(round(totalAmount, 2));
 		response.setInterestAmount(round(interest, 2));
 		response.setItems(monthlyInstallments);
 		return response;
+	}*/
+
+	/**
+	 * 
+	 * @param principal          - loan withdrawal amount
+	 * @param numOfMonths        - number of months to raise a loan
+	 * @param annualInterestRate - monthly interest
+	 * @return response - total amount, total interest and monthly installment
+	 *         amount
+	 */
+	public DetailedResponseDto calculateMonthlyInstallmentDetailed(double principal, double annualInterestRate,
+			int numOfMonths) {
+
+		double interestPaid, principalPaid, newBalance;
+		double monthlyInterestRate, monthlyPayment;
+		int month;
+		int numMonths = numOfMonths;
+
+		// Output monthly payment and total payment
+		// principalAMount + interestAmount
+		monthlyInterestRate = annualInterestRate / 12;
+		monthlyPayment = monthlyPayment(principal, monthlyInterestRate, numMonths);
+
+		DetailedResponseDto response = new DetailedResponseDto();
+		response.setAmount(principal);
+		response.setTotalAmount(round(monthlyPayment * numMonths, 2));
+		response.setInterestAmount(round(response.getTotalAmount() - principal, 2));
+
+		List<MonthlyAccountDetailedDTO> monthlyDetailedInstallments = new ArrayList<>();
+		
+		for (month = 1; month <= numMonths; month++) {
+			// Compute amount paid and new balance for each payment period
+			interestPaid = principal * (monthlyInterestRate / 100);
+			principalPaid = monthlyPayment - interestPaid;
+			newBalance = principal - principalPaid;
+
+			MonthlyAccountDetailedDTO tmp = new MonthlyAccountDetailedDTO();
+			tmp.setMonth(month);
+			tmp.setPaymentAmount(round(principalPaid + interestPaid, 2));
+			tmp.setPrincipalAmount(round(principalPaid, 2));
+			tmp.setInterestAmount(round(interestPaid, 2));
+			tmp.setBalanceOwed(round(newBalance, 2));
+
+			// Update the balance
+			principal = newBalance;
+			monthlyDetailedInstallments.add(tmp);
+
+		}
+
+		response.setItems(monthlyDetailedInstallments);
+
+		return response;
 	}
 
+	/**
+	 * @param loanAmount
+	 * @param monthlyInterestRate in percent
+	 * @param numberOfYears
+	 * @return the amount of the monthly payment of the loan
+	 */
+	static double monthlyPayment(double loanAmount, double monthlyInterestRate, int numberOfMonths) {
+		monthlyInterestRate /= 100;
+		return loanAmount * monthlyInterestRate / (1 - 1 / Math.pow(1 + monthlyInterestRate, numberOfMonths));
+	}
+
+	/**
+	 * helper method for rounding a decimal number to n digits
+	 * 
+	 * @param value  - decimal value
+	 * @param places - number of decimal places
+	 * @return a number rounded to n decimal places
+	 */
 	private static double round(double value, int places) {
 		if (places < 0)
 			throw new IllegalArgumentException();

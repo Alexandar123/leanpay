@@ -33,10 +33,9 @@ public class LoanCalculatorRequest {
 	public LoanCalculatorRequest() {
 	}
 
-	public LoanCalculatorRequest(Long id, float amount, int numberOfMonths, float monthlyInterestPercent,
+	public LoanCalculatorRequest(float amount, int numberOfMonths, float monthlyInterestPercent,
 			LoanCalculatorResponse loanCalculatorResponse) {
 		super();
-		this.id = id;
 		this.amount = amount;
 		this.numberOfMonths = numberOfMonths;
 		this.monthlyInterestPercent = monthlyInterestPercent;

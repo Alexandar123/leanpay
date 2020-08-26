@@ -12,12 +12,11 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "monthly_acc")
+@Table(name = "monthly_account")
 public class MonthlyAccount {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonIgnore
 	private Long id;
 	private int month;
 	private double paymentAmount;
