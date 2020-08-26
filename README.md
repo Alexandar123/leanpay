@@ -9,6 +9,7 @@ Simple credit calculator application
     Open: http://localhost:8080 
         username: user 
         password: user
+        choose "leanpaydb"
 
 Request - POST METHOD:
 http://localhost:8083/installment-plan or
