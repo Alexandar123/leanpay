@@ -7,8 +7,8 @@ Simple credit calculator application
 4. Import postman collection and trigger API's
 5. Check the results in the database (recommendation to use the running "adminer" container to check the connection) -
     localhost:8080 
-        username:user 
-        password:user
+        username: user 
+        password: user
 
 Request - POST METHOD:
 http://localhost:8083/installment-plan or
