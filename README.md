@@ -6,7 +6,7 @@ Simple credit calculator application
 3. run "docker-compose up" in the root directory! (docker-compose will do the work of bringing up both containers and supplying them with the configuration contained in docker-compose.yml)
 4. Import postman collection and trigger API's
 5. Check the results in the database (recommendation to use the running "adminer" container to check the connection) -
-    localhost:8080 
+    Open: http://localhost:8080 
         username: user 
         password: user
 
