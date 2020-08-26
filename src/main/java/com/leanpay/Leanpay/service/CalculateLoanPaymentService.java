@@ -22,12 +22,11 @@ public class CalculateLoanPaymentService {
 	 *         amount
 	 */
 	public DetailedResponseDto calculateMonthlyInstallmentDetailed(double principal, double annualInterestRate,
-			int numOfMonths) {
+			int numMonths) {
 
 		double interestPaid, principalPaid, newBalance;
 		double monthlyInterestRate, monthlyPayment;
 		int month;
-		int numMonths = numOfMonths;
 
 		// Output monthly payment and total payment
 		// principalAMount + interestAmount

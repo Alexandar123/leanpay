@@ -25,7 +25,7 @@ services:
             - 8080:8080
             
     leanpay-main:
-        image: kkapelon/docker-maven-comparison:0.0.1-SNAPSHOT
+        image: agordic/leanpay_app:0.0.1-SNAPSHOT
         restart: on-failure
         depends_on:
             - db
