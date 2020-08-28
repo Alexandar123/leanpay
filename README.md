@@ -12,7 +12,7 @@ Simple credit calculator application
 	password: user  
 	After login choose "leanpaydb"    
   
-6. If you don't want to use docker containers you should change application.properties to use connection string and credentials for standard connection without docker, in that case, you should build and run the application on the standard way(mvn clean install & run as a spring boot application)   
+Note: If you don't want to use docker containers you should change application.properties to use connection string and credentials for standard connection without docker, in that case, you should build and run the application on the standard way(mvn clean install & run as a spring boot application)   
 	username: root    
 	password:    
 	db name:  "leanpaydb"  
