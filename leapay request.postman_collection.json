@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "ca85bab8-1989-435d-913d-90ed2981ee91",
+		"name": "leapay request",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "leanpay request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "950cd90a-a3a7-4236-a39c-40f40dc93f3e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is valid\", () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.amount).to.eql(1000.0);\r",
+							"  pm.expect(responseJson.totalAmount).to.eql(1008.34);\r",
+							"  pm.expect(responseJson.interestAmount).to.eql(8.34);\r",
+							"\r",
+							"  pm.expect(responseJson.items[0].month).to.eql(1);\r",
+							"   pm.expect(responseJson.items[0].paymentAmount).to.eql(336.11);\r",
+							"\r",
+							"   pm.expect(responseJson.items[1].month).to.eql(2);\r",
+							"   pm.expect(responseJson.items[1].paymentAmount).to.eql(336.11);\r",
+							"\r",
+							"   pm.expect(responseJson.items[2].month).to.eql(3);\r",
+							"   pm.expect(responseJson.items[2].paymentAmount).to.eql(336.11);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "cis_test_passwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cis_test_1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\":1000.00,\r\n    \"numberOfMonths\":3,\r\n    \"monthlyInterestPercent\": 5.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/installment-plan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"installment-plan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "installment-plan-detailed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4a8ffe63-358a-449b-8908-d472e254ab56",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is valid\", () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.amount).to.eql(1000.0);\r",
+							"  pm.expect(responseJson.totalAmount).to.eql(1008.34);\r",
+							"  pm.expect(responseJson.interestAmount).to.eql(8.34);\r",
+							"\r",
+							"   pm.expect(responseJson.items[0].month).to.eql(1);\r",
+							"   pm.expect(responseJson.items[0].paymentAmount).to.eql(336.11);\r",
+							"   pm.expect(responseJson.items[0].principalAmount).to.eql(331.95);\r",
+							"   pm.expect(responseJson.items[0].interestAmount).to.eql(4.17);\r",
+							"   pm.expect(responseJson.items[0].balanceOwed).to.eql(668.05);\r",
+							"\r",
+							"   pm.expect(responseJson.items[1].month).to.eql(2);\r",
+							"   pm.expect(responseJson.items[1].paymentAmount).to.eql(336.11);\r",
+							"   pm.expect(responseJson.items[1].principalAmount).to.eql(333.33);\r",
+							"   pm.expect(responseJson.items[1].interestAmount).to.eql(2.78);\r",
+							"   pm.expect(responseJson.items[1].balanceOwed).to.eql(334.72);\r",
+							"\r",
+							"   pm.expect(responseJson.items[2].month).to.eql(3);\r",
+							"   pm.expect(responseJson.items[2].paymentAmount).to.eql(336.11);\r",
+							"   pm.expect(responseJson.items[2].principalAmount).to.eql(334.72);\r",
+							"   pm.expect(responseJson.items[2].interestAmount).to.eql(1.39);\r",
+							"   pm.expect(responseJson.items[2].balanceOwed).to.eql(0.0);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\":1000.00,\r\n    \"numberOfMonths\":3,\r\n    \"monthlyInterestPercent\": 5.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/installment-plan-detailed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"installment-plan-detailed"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
