@@ -28,8 +28,6 @@ public class CalculateLoanPaymentService {
 		double monthlyInterestRate, monthlyPayment;
 		int month;
 
-		// Output monthly payment and total payment
-		// principalAMount + interestAmount
 		monthlyInterestRate = annualInterestRate / 12;
 		monthlyPayment = monthlyPayment(principal, monthlyInterestRate, numMonths);
 

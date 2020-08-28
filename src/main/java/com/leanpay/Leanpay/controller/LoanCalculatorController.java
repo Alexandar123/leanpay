@@ -22,7 +22,6 @@ public class LoanCalculatorController {
 	static Logger log = LoggerFactory.getLogger(LoanCalculatorController.class);
 
 	private final CalculateLoanPaymentService service;
-
 	private LoanCalculatorService loanCalculatorService;
 
 	@Autowired

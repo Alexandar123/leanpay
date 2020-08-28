@@ -2,6 +2,9 @@ package com.leanpay.Leanpay.dto;
 
 import java.io.Serializable;
 
+import lombok.experimental.Accessors;
+
+@Accessors(chain = true)
 public class LoanCalculatorRequestDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;

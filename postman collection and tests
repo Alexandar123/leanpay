@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "ca85bab8-1989-435d-913d-90ed2981ee91",
+		"name": "leapay request",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "leanpay request",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "cis_test_passwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cis_test_1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\":6000.00,\r\n    \"numberOfMonths\":10,\r\n    \"monthlyInterestPercent\": 5.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/installment-plan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"installment-plan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "installment-plan-detailed",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\":1000.00,\r\n    \"numberOfMonths\":10,\r\n    \"monthlyInterestPercent\": 5.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/installment-plan-detailed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"installment-plan-detailed"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

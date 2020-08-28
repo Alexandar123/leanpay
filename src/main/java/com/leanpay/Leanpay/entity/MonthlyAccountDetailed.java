@@ -6,8 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.experimental.Accessors;
+
 @Entity
 @Table(name = "detailed_payment_amount")
+@Accessors(chain = true)
 public class MonthlyAccountDetailed extends MonthlyAccount {
 
 	@Id
@@ -20,7 +23,8 @@ public class MonthlyAccountDetailed extends MonthlyAccount {
 	public MonthlyAccountDetailed() {
 	}
 
-	public MonthlyAccountDetailed(double principalAmount, double interestAmount, double balanceOwed, double paymentAmount, int month) {
+	public MonthlyAccountDetailed(double principalAmount, double interestAmount, double balanceOwed,
+			double paymentAmount, int month) {
 		super();
 		super.setPaymentAmount(paymentAmount);
 		super.setMonth(month);

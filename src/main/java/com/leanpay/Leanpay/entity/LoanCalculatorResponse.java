@@ -17,8 +17,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.experimental.Accessors;
+
 @Entity
 @Table(name = "installment_response")
+@Accessors(chain = true)
 public class LoanCalculatorResponse {
 
 	@Id

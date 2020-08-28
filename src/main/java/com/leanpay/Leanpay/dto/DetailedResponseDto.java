@@ -3,6 +3,9 @@ package com.leanpay.Leanpay.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import lombok.experimental.Accessors;
+
+@Accessors(chain = true)
 public class DetailedResponseDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -42,4 +45,9 @@ public class DetailedResponseDto implements Serializable {
 	public void setItems(List<MonthlyAccountDetailedDTO> items) {
 		this.items = items;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 }

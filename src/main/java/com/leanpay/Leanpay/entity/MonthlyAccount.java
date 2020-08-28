@@ -6,8 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.experimental.Accessors;
+
 @Entity
 @Table(name = "monthly_account")
+@Accessors(chain = true)
 public class MonthlyAccount {
 
 	@Id
