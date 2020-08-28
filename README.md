@@ -10,8 +10,13 @@ Simple credit calculator application
 	Link: http://localhost:8080  
 	username: user  
 	password: user  
-	After login choose "leanpaydb"  
-	
+	After login choose "leanpaydb"    
+  
+6. If you don't want to use docker containers you should change application.properties to use connection string and credentials for standard connection without docker, in that case, you should build and run the application on the standard way(mvn clean install & run as a spring boot application)   
+	username: root    
+	password:    
+	db name:  "leanpaydb"  
+  	
 API's:  
 http://localhost:8083/installment-plan or  
 http://localhost:8083/installment-plan-detailed  
